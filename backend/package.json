@@ -1,0 +1,37 @@
+{
+  "name": "airtable-form-builder-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Airtable-connected dynamic form builder with OAuth authentication, conditional logic, and webhook synchronization",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "mongo:start": "brew services start mongodb/brew/mongodb-community",
+    "mongo:stop": "brew services stop mongodb/brew/mongodb-community",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "airtable",
+    "forms",
+    "mongodb",
+    "express",
+    "oauth",
+    "webhooks",
+    "conditional-logic"
+  ],
+  "author": "Shardul Joshi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mongoose": "^9.0.0",
+    "passport": "^0.7.0",
+    "passport-oauth2": "^1.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
