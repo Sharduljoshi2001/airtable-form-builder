@@ -7,8 +7,8 @@
     "npm": ">=9.0.0"
   },
   "scripts": {
-    "build": "cd frontend/smart-form-builder && npm install && npm run build",
-    "start": "cd frontend/smart-form-builder && npm run preview"
+    "build": "npm --prefix frontend/smart-form-builder install && npm --prefix frontend/smart-form-builder run build",
+    "start": "npm --prefix frontend/smart-form-builder run preview"
   },
   "keywords": ["airtable", "form-builder", "react", "mern"],
   "author": "Shardul Joshi",
