@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://airtable-form-builder-80kh.onrender.com';
 
-// Conditional logic utility function (client-side)
 function shouldShowQuestion(rules, answersSoFar) {
   if (!rules || !rules.conditions || rules.conditions.length === 0) {
     return true;
@@ -55,14 +54,12 @@ function shouldShowQuestion(rules, answersSoFar) {
 }
 
 export default function FormViewer({formConfig}){
-    // State variables - component ki memory
-    const [answers, setAnswers]= useState({}) // user ke responses store karte hain
-    const [isSubmitting, setIsSubmitting] = useState(false) // submit ho raha hai ya nahi
-    const [submitted, setSubmitted] = useState(false) // submit ho gaya ya nahi
-    const [submitError, setSubmitError] = useState(null) // submit error
-    const [visibleQuestions, setVisibleQuestions] = useState([]) // conditionally visible questions
+    const [answers, setAnswers]= useState({})
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [submitted, setSubmitted] = useState(false)
+    const [submitError, setSubmitError] = useState(null)
+    const [visibleQuestions, setVisibleQuestions] = useState([])
 
-    // Update visible questions when answers change
     useEffect(() => {
       if (formConfig && formConfig.questions) {
         const visible = formConfig.questions.filter(question => {
@@ -72,29 +69,24 @@ export default function FormViewer({formConfig}){
       }
     }, [answers, formConfig]);
 
-    // User ka input handle karne ka function
     function handleAnswerChange(questionKey, value) {
-        // Purane answers ko copy karo aur naya answer add karo
         const newAnswers = {
             ...answers,
             [questionKey]: value
         }
         setAnswers(newAnswers)
         
-        // Clear any previous error
         setSubmitError(null)
     }
 
-    // Form submit karne ka function  
     async function handleSubmit(event) {
-        event.preventDefault() // Page reload nahi karne denge
-        setIsSubmitting(true) // Loading state start karo
-        setSubmitError(null) // Clear previous errors
+        event.preventDefault()
+        setIsSubmitting(true)
+        setSubmitError(null)
         
         try {
             console.log('📝 Submitting form to database and Airtable...');
             
-            // Convert answers to question key format for backend
             const formattedAnswers = {};
             visibleQuestions.forEach((question, index) => {
                 const questionKey = `q_${index + 1}`;
@@ -106,7 +98,6 @@ export default function FormViewer({formConfig}){
             
             console.log('Formatted answers for submission:', formattedAnswers);
             
-            // Submit to our new backend API
             const formId = formConfig._id || 'temp-form-id';
             const response = await fetch(`${API_BASE_URL}/forms/${formId}/submit`, {
                 method: 'POST',
@@ -125,7 +116,6 @@ export default function FormViewer({formConfig}){
                 setIsSubmitting(false);
                 setSubmitted(true);
                 
-                // 3 seconds baad form reset kar do
                 setTimeout(() => {
                     setSubmitted(false);
                     setAnswers({});
@@ -141,12 +131,9 @@ export default function FormViewer({formConfig}){
         }
     }
 
-    // Har field type ke liye alag input banane ka function
     function renderFormField(question) {
-        // Current field ka value nikalo
         const currentValue = answers[question.id] || ''
         
-        // Check if field type is unsupported
         const unsupportedTypes = ['singleCollaborator', 'multipleCollaborators', 'multipleAttachments', 'aiText'];
         if (unsupportedTypes.includes(question.type)) {
             return (
@@ -162,9 +149,7 @@ export default function FormViewer({formConfig}){
             );
         }
         
-        // Field type ke basis pe different input return karo
         if (question.type === 'singleLineText') {
-            // Simple text input
             return (
                 <input
                     type="text"
@@ -176,7 +161,6 @@ export default function FormViewer({formConfig}){
                 />
             )
         } else if (question.type === 'multilineText') {
-            // Textarea for multiline text
             return (
                 <textarea
                     value={currentValue}
@@ -188,7 +172,6 @@ export default function FormViewer({formConfig}){
                 />
             )
         } else if (question.type === 'email') {
-            // Email input
             return (
                 <input
                     type="email"
@@ -200,7 +183,6 @@ export default function FormViewer({formConfig}){
                 />
             )
         } else if (question.type === 'singleSelect') {
-            // Dropdown select
             return (
                 <select
                     value={currentValue}
@@ -215,7 +197,6 @@ export default function FormViewer({formConfig}){
                 </select>
             )
         } else if (question.type === 'url') {
-            // URL input
             return (
                 <input
                     type="url"
@@ -303,9 +284,7 @@ export default function FormViewer({formConfig}){
                 </div>
             )}
 
-            {/* Form start karo */}
             <form onSubmit={handleSubmit}>
-                {/* Only show visible questions based on conditional logic */}
                 {visibleQuestions.map((question, index) => {
                     const questionKey = `q_${index + 1}`;
                     
@@ -338,7 +317,6 @@ export default function FormViewer({formConfig}){
                     )
                 })}
 
-                {/* Submit button */}
                 <div style={{ marginTop: '30px' }}>
                     <button
                         type="submit"
@@ -359,7 +337,6 @@ export default function FormViewer({formConfig}){
                 </div>
             </form>
 
-            {/* Debug section - development ke liye helpful */}
             <div style={{ 
                 marginTop: '30px', 
                 padding: '15px', 
