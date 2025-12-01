@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 
-const API_BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://airtable-form-builder-80kh.onrender.com';
 
 // Conditional logic utility function (client-side)
 function shouldShowQuestion(rules, answersSoFar) {
