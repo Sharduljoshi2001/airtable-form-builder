@@ -2,6 +2,10 @@
   "name": "airtable-form-builder",
   "version": "1.0.0",
   "description": "Full-stack Airtable form builder with React frontend and Node.js backend",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "build": "cd frontend/smart-form-builder && npm install && npm run build",
     "start": "cd frontend/smart-form-builder && npm run preview"

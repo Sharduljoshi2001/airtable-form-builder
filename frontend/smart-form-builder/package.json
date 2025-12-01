@@ -4,6 +4,10 @@
   "version": "1.0.0",
   "description": "React frontend for Airtable-connected dynamic form builder with conditional logic and real-time response management",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
