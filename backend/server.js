@@ -23,7 +23,12 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'https://airtable-form-builder.vercel.app',
+    'https://airtable-form-builder-git-main-sharduljoshi2001.vercel.app',
+    /\.vercel\.app$/
+  ],
   credentials: true
 })); 
 app.use(express.json());
