@@ -25,8 +25,9 @@ app.use(session({
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://airtable-form-builder.vercel.app',
-    'https://airtable-form-builder-git-main-sharduljoshi2001.vercel.app',
+    'https://localhost:5173',
+    'https://airtable-form-builder-r9n8v8hn8-sharduljoshi2001s-projects.vercel.app',
+    /vercel\.app$/,
     /\.vercel\.app$/
   ],
   credentials: true
