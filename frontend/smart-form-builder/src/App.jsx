@@ -3,7 +3,7 @@ import './App.css'
 import FormBuilder from './components/FormBuilder'
 import FormViewer from './components/FormViewer'
 import ResponsesViewer from './components/ResponsesViewer'
-const API_BASE_URL = 'http://localhost:3001'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://airtable-form-builder-80kh.onrender.com'
 
 function App() {
   const [currentView, setCurrentView] = useState('builder')

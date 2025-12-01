@@ -1,0 +1,12 @@
+{
+  "name": "airtable-form-builder",
+  "version": "1.0.0",
+  "description": "Full-stack Airtable form builder with React frontend and Node.js backend",
+  "scripts": {
+    "build": "cd frontend/smart-form-builder && npm install && npm run build",
+    "start": "cd frontend/smart-form-builder && npm run preview"
+  },
+  "keywords": ["airtable", "form-builder", "react", "mern"],
+  "author": "Shardul Joshi",
+  "license": "MIT"
+}

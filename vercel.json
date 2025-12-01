@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd frontend/smart-form-builder && npm install && npm run build",
+  "outputDirectory": "frontend/smart-form-builder/dist",
+  "installCommand": "cd frontend/smart-form-builder && npm install"
+}
